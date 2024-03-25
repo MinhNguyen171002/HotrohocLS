@@ -1,0 +1,74 @@
+﻿@model DoAn.ViewModel.ViewModelNV
+
+@{
+    ViewBag.Title = "Create";
+}
+
+<h2>Create</h2>
+
+
+@using (Html.BeginForm("Create", "NhanVatLS", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+                @Html.AntiForgeryToken()
+
+                <div class="form-horizontal">
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                <div class="form-group">
+                    @Html.DisplayName("Tên nhân vật")
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.TenNhanVat, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.TenNhanVat, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.DisplayName("Năm sinh")
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.NgaySinh, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.NgaySinh, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.DisplayName("Năm mất")
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.NgayMat, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.NgayMat, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.DisplayName("Hình cover")
+                    <div class="col-md-10">
+                        <input type="file" multiple name="images" /> <br />
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.DisplayName("Tóm tắt")
+                    <div class="col-md-10">
+                        <input type="file" name="text" /> <br />
+                    </div>
+                </div>
+
+                <div style="padding-bottom:50px" class="form-group">
+                    @Html.DisplayName("Thời kỳ")
+                    @Html.DropDownListFor(model=>model.IdThoiKy,
+                    new SelectList(Model.ThoiKies, "IdThoiKy", "TenThoiKy"), "", new { @class = "form-control" })
+                </div>
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Create" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

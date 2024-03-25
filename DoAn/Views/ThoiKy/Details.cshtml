@@ -1,0 +1,54 @@
+﻿@model DoAnWeb.Models.ThoiKy
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+<link href="@Url.Content("~/Content/henshin.css")" rel="stylesheet" type="text/css" />
+
+<div>
+    <h4>ThoiKy</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayName("Tên Thòi kỳ")
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TenThoiKy)
+        </dd>
+
+        <dt>
+            @Html.DisplayName("Năm bắt đầu")
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.NamBatDau)
+        </dd>
+
+        <dt>
+            @Html.DisplayName("Năm kết thúc")
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.NamKetThuc)
+        </dd>
+
+        <dt>
+            @Html.DisplayName("Tóm tắt")
+        </dt>
+
+        <dd>
+            @foreach (string text in ViewBag.Text)
+            {
+                <h4>@text</h4>
+            }
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.IdThoiKy }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

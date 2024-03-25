@@ -1,0 +1,65 @@
+﻿@model DoAnWeb.Models.NhanVatLS
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>NhanVatLS</h4>
+    <hr />
+    <dl class="dl-horizontal">
+
+        <dt>
+            @Html.DisplayName("Tên nhân vật")
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TenNhanVat)
+        </dd>
+
+        <dt>
+            @Html.DisplayName("Ngày sinh")
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.NgaySinh)
+        </dd>
+
+        <dt>
+            @Html.DisplayName("Ngày mất")
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.NgayMat)
+        </dd>
+
+        <dt>
+            @Html.DisplayName("Hình nhân vật")
+        </dt>
+        @foreach(var item in ViewBag.Img)
+            {
+                <tr>
+                    <td>
+                        <img src="~/Content/Image/NhanVat/@item" width="500" style="image-rendering:optimizeQuality" title="char" />
+                    </td>
+                </tr>
+            }
+
+        <dt>
+            @Html.DisplayName("Nội dung")
+        </dt>
+
+        <dd>
+            @foreach (string text in ViewBag.Data)
+            {
+                <h4>@text</h4>
+            }
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Back","Index","User")
+</p>

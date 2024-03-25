@@ -1,0 +1,50 @@
+﻿@model IEnumerable<DoAnWeb.Models.ThoiKy>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    <a style="text-decoration:none" href="@Url.Action("Create", "ThoiKy")">Create</a>
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayName("Tên Thòi kỳ")
+        </th>
+        <th>
+            @Html.DisplayName("Năm bắt đầu")
+        </th>
+        <th>
+            @Html.DisplayName("Năm kết thúc")
+        </th>
+        <th>
+            @Html.DisplayName("Tóm tắt")
+        </th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.TenThoiKy)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.NamBatDau)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.NamKetThuc)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.TomTatTK)
+        </td>
+        <td>
+            <a style="text-decoration:none" href="@Url.Action("Edit", "ThoiKy", new { id = item.IdThoiKy })">Edit</a>
+            <a style="text-decoration:none" href="@Url.Action("Details", "ThoiKy", new { id = item.IdThoiKy })">Detail</a>
+            <a style="text-decoration:none" href="@Url.Action("Delete", "ThoiKy", new { id = item.IdThoiKy })">Delete</a>
+        </td>
+    </tr>
+}
+
+</table>

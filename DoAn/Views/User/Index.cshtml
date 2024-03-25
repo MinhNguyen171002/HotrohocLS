@@ -1,0 +1,68 @@
+﻿@model IEnumerable<DoAnWeb.Models.SuKien>
+
+@{
+    ViewBag.Title = "View";
+}
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.cdnfonts.com/css/inner-vintage" rel="stylesheet">
+    <link href="@Url.Content("~/Content/Style.css")" rel="stylesheet" type="text/css" />
+</head>
+<body>
+    @using (Html.BeginForm(Html.BeginForm("Index", "User", FormMethod.Get, new { @class = "form-inline" })))
+    {
+        <div class="search">
+            <label>Thời kỳ</label>@Html.DropDownList("skID", null, htmlAttributes: new { @class = "form-control" }) <label>Sự kiện: </label>
+            <input type="Text" class="form-control mx-sm-3" value="@ViewBag.Keyword" name="search" placeholder="">
+            <input type="submit" class="btn btn-danger" value="Tìm kiếm">
+            @ViewData["Error"]
+        </div><br class="clearBoth"/>
+    }
+<div @*class="slide"*@>
+    @foreach (var i in ViewBag.Img)
+    {
+        foreach (var x in Model)
+        {
+            if (i.IdNoiDung == x.IdNoiDung)
+            {
+                <a style="text-decoration:none" href="@Url.Action("Details", "SuKien", new { id = i.IdNoiDung })"><img class="img" src="~/Content/Image/SuKien/@i.UrlImage" alt=""></a>
+            }
+        }
+    }
+</div>
+
+    <article class="list">
+        <h3>Lịch Sử nổi bật</h3>
+        <div class="new_list">
+            @foreach (var item in Model)
+            {
+                <a class="news_item" style="text-decoration:none" href="@Url.Action("Details", "SuKien", new { id = item.IdNoiDung })">
+                    <h4>@Html.DisplayFor(model => item.TenNoiDung)</h4>
+                    <div> <img src="~/Content/Image/SuKien/@item.Images.FirstOrDefault().UrlImage" style="image-rendering:optimizeQuality" height="200" width="200"> </div>
+                    <div class="content">
+                        @Html.DisplayFor(model => item.TomTatSK)
+                    </div>
+                </a>
+            }
+        </div>
+    </article>
+
+    <script type="text/javascript">
+        let slideIndex = 0;
+        showSlides();
+
+        function showSlides() {
+            let i;
+            let slides = document.getElementsByClassName("img");
+            for (i = 0; i < slides.length; i++) {
+                slides[i].style.display = "none";
+            }
+            slideIndex++;
+            if (slideIndex > slides.length) { slideIndex = 1 }
+            slides[slideIndex - 1].style.display = "block";
+            setTimeout(showSlides, 4000);
+        }
+    </script>
+</body>
+

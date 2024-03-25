@@ -1,0 +1,71 @@
+﻿@model DoAnWeb.Models.SuKien
+
+@Scripts.Render("~/bundles/jquery")
+@Scripts.Render("~/bundles/jqueryval")
+
+
+@using (Html.BeginForm("Edit", "SuKien", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    @Html.AntiForgeryToken()
+    
+<div class="form-horizontal">
+    <hr />
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+    @Html.HiddenFor(model => model.IdNoiDung)
+
+    <div class="form-group">
+        @Html.DisplayName("Tên sự kiện")
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.TenNoiDung, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.TenNoiDung, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.DisplayName("Tóm tắt sự kiện")
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.TomTatSK, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.TenNoiDung, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.DisplayName("Diễn biến sự kiện")
+        <div class="col-md-10">
+            <input type="file" name="text" /> <br />
+            @Html.ValidationMessageFor(model => model.NoiDungSK, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.DisplayName("Hình ảnh sự kiện")
+        <div class="col-md-10">
+            <input type="file" multiple name="images" /> <br />
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.DisplayName("Thời kỳ diễn ra")
+        <div class="col-md-10">
+            @Html.DropDownListFor(model => model.IdThoiKy,
+            new SelectList(ViewBag.Data, "IdThoiKy", "TenThoiKy"), "", new { @class = "form-control" })
+            @Html.ValidationMessageFor(model => model.IdThoiKy, "", new { @class = "text-danger" })
+        </div>
+    </div>
+    <div class="form-group">
+       @Html.DisplayName("Các nhân vật tham gia")
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.IdNv, new { htmlAttributes = new { @class = "form-control" } })
+        </div>
+    </div>
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-10">
+            <input type="submit" value="Create" class="btn btn-default" />
+        </div>
+    </div>
+</div>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>

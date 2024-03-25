@@ -1,0 +1,60 @@
+﻿@model IEnumerable<DoAnWeb.Models.NhanVatLS>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    <a style="text-decoration:none" href="@Url.Action("Create", "NhanVatLS")">Create</a>
+    <a style="text-decoration:none" href="@Url.Action("Image", "NhanVatLS")">Image</a>
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayName("Thời kỳ")
+        </th>
+        <th>
+            @Html.DisplayName("Tên nhân vật")
+        </th>
+        <th>
+            @Html.DisplayName("Năm sinh")
+        </th>
+        <th>
+            @Html.DisplayName("Năm mất")
+        </th>
+        <th>
+            @Html.DisplayName("Hình cover")
+        </th>
+        <th>
+            @Html.DisplayName("Tóm tắt")
+        </th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelitem => item.ThoiKy.TenThoiKy)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.TenNhanVat)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.NgaySinh)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.NgayMat)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.NoiDungTomTatNVUrl)
+        </td>
+        <td>
+            <a style="text-decoration:none" href="@Url.Action("Edit", "NhanVatLS", new { id = item.IdNV })">Edit</a>
+            <a style="text-decoration:none" href="@Url.Action("Details", "NhanVatLS", new { id = item.IdNV })">Detail</a>
+            <a style="text-decoration:none" href="@Url.Action("Delete", "NhanVatLS", new { id = item.IdNV })">Delete</a>
+        </td>
+    </tr>
+}
+
+</table>

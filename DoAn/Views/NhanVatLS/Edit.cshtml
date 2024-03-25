@@ -1,0 +1,80 @@
+﻿@model DoAnWeb.Models.NhanVatLS
+
+@{
+    ViewBag.Title = "Edit";
+}
+
+<h2>Edit</h2>
+
+
+@using (Html.BeginForm("Edit", "NhanVatLS", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    @Html.AntiForgeryToken()
+    
+<div class="form-horizontal">
+    <h4>NhanVatLS</h4>
+    <hr />
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+    @Html.HiddenFor(model => model.IdNV)
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.TenNhanVat, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.TenNhanVat, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.TenNhanVat, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.NgaySinh, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.NgaySinh, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.NgaySinh, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.NgayMat, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.NgayMat, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.NgayMat, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.DisplayName("Bổ sung ảnh")
+        <div class="col-md-10">
+            <input type="file" multiple name="images" id="Files" /> <br />
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.NoiDungTomTatNVUrl, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            <input type="file" multiple name="text" id="Files" /> <br />
+            @Html.ValidationMessageFor(model => model.NoiDungTomTatNVUrl, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div style="padding-bottom:100px" class="form-group">
+        @Html.DisplayName("Thời kỳ")
+        @Html.DropDownListFor(model => model.IdThoiKy,
+        new SelectList(ViewBag.Data, "IdThoiKy", "TenThoiKy"), "", new { @class = "form-control" })
+        @Html.ValidationMessageFor(model => model.IdThoiKy, "", new { @class = "text-danger" }))
+    </div>
+
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-10">
+            <input type="submit" value="Save" class="btn btn-primary" />
+        </div>
+    </div>
+</div>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

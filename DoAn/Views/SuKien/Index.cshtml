@@ -1,0 +1,51 @@
+﻿@model IEnumerable<DoAnWeb.Models.SuKien>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+
+<p>
+    <a style="text-decoration:none" href="@Url.Action("Create", "SuKien")">Create</a>
+    <a style="text-decoration:none" href="@Url.Action("Image", "NhanVatLS")">Image</a>
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayName("Thời kỳ")
+        </th>
+        <th>
+            @Html.DisplayName("Sự kiện")
+        </th>
+        <th>
+            @Html.DisplayName("tóm tắt nội dung")
+        </th>
+        <th>
+            @Html.DisplayName("Diễn biến")
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.ThoiKy.TenThoiKy)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.TenNoiDung)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.TomTatSK)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.NoiDungSK)
+        </td>
+        <td>
+            <a style="text-decoration:none" href="@Url.Action("Edit", "SuKien", new { id = item.IdNoiDung })">Edit</a>
+            <a style="text-decoration:none" href="@Url.Action("Details", "SuKien", new { id = item.IdNoiDung })">Detail</a>
+            <a style="text-decoration:none" href="@Url.Action("Delete", "SuKien", new { id = item.IdNoiDung })">Delete</a>
+        </td>
+    </tr>
+}
+
+</table>

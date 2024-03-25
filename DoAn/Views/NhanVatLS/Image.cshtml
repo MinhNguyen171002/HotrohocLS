@@ -1,0 +1,34 @@
+﻿@model IEnumerable<DoAn.Models.Image1>
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.NhanVatLS.TenNhanVat)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.SuKien.TenNoiDung)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.UrlImage)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.NhanVatLS.TenNhanVat)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.SuKien.TenNoiDung)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.UrlImage)
+        </td>
+        <td>
+            <a style="text-decoration:none" href="@Url.Action("DeleteImage", "NhanVatLS",new { id = item.IDImage })">Delete</a>
+        </td>
+    </tr>
+}
+
+</table>
